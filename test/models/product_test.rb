@@ -53,4 +53,12 @@ class ProductTest < ActiveSupport::TestCase
 			assert new_product(name).invalid?, "#{name} shouldn't be valid"
 		end
 	end
+
+	test 'product name length' do
+		product = Product.new(title: products(:ruby).title,
+							description: products(:ruby).description,
+							image_url: products(:ruby).image_url)
+		product.title.length < 10
+		assert product.invalid?
+	end
 end
