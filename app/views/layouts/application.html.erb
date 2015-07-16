@@ -6,20 +6,24 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body clas="<%= controller.controller_name %>">
+<body class="<%= controller.controller_name %>">
 	<div id="banner">
-		<%= image_tag('logo.png') %>		
-		<%= @page_title || "My shop projject" %>
+		<%= image_tag('cart.png') %>		
+		<%= @page_title || "My shop projject" %>		
+		<div id="times_visited">
+			<%= @counter>=5 ? pluralize(@counter, 'time', 'times') + ' visited' : '' %>
+		</div> 
 	</div>
 	<div id="columns">
 		<div id="side">
 			<ul>
-				<li><a href="http://www....">Home</a></li>
+				<li><%= link_to 'Home', store_path %></li>
 				<li><a href="http://www..../faq">Questions</a></li>
 				<li><a href="http://www..../news">News</a></li>
 				<li><a href="http://www..../contact">Contact</a></li>
 				<br />
-				<li /><%= Time.now.hour.to_s + ':' + (Time.now.min).to_s %>
+				<li />Current time: <%= Time.now.strftime("%H:%M") %>
+				<br />
 			</ul>
 		</div>
 		<div id="main">
