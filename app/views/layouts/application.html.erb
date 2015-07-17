@@ -11,7 +11,7 @@
 		<%= image_tag('cart.png') %>		
 		<%= @page_title || "My shop projject" %>		
 		<div id="times_visited">
-			<%= @counter>=5 ? pluralize(@counter, 'time', 'times') + ' visited' : '' %>
+			<%= controller.page_visit_show %>
 		</div> 
 	</div>
 	<div id="columns">

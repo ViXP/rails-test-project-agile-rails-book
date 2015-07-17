@@ -1,15 +1,17 @@
 class CartsController < ApplicationController
+  include PageVisits
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
   # GET /carts.json
-  def index
+  def index  
     @carts = Cart.all
   end
 
   # GET /carts/1
   # GET /carts/1.json
   def show
+
   end
 
   # GET /carts/new
