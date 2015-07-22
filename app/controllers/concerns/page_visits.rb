@@ -6,7 +6,7 @@ module PageVisits
   
   def page_visit_show 
   	do_counter
-  	if @counter>=5 
+  	if @counter.to_i >= 5 
   		pluralize @counter, 'time', 'times' + ' visited'
     end
   end
