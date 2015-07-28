@@ -4,7 +4,9 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-<% 2.times do |num| %>
-cart<%=num+1%>:
-  id: <%=num+1%>
-<% end %>
+
+one:
+  id: 1
+
+two:
+  id: 2

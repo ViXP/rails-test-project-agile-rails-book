@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-o1_coffee:
+one:
   product_id: 2
   cart_id: 1
   quantity: 2
   price: 36.00
 
-o1_ruby:
+two:
   product_id: 3
   cart_id: 1
   quantity: 2
