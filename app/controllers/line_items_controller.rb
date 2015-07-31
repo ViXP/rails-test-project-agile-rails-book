@@ -1,8 +1,8 @@
 class LineItemsController < ApplicationController
   include PageVisits
   before_action :set_cart, only: :create
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy, :decrement]
+  before_action :set_current_cart, only: [:decrement]
   # GET /line_items
   # GET /line_items.json
   def index
@@ -25,11 +25,10 @@ class LineItemsController < ApplicationController
 
   # POST /line_items
   # POST /line_items.json
-  def create
+  def create    
     product = Product.find(params[:product_id])
     reset_counter;
     @line_item = @cart.add_product(product.id, product.price)
-
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_path }
@@ -59,23 +58,31 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-      if (@line_item.quantity > 1) 
-        @line_item.quantity -= 1 
-        @line_item.save
-      else      
-        @line_item.destroy 
-      end
+      @line_item.destroy 
+  end
+
+  def decrement    
+    decremented = @line_item.decrement
     respond_to do |format|
-      format.js { @cart }
-      format.html { redirect_to store_path , notice: 'Line item was successfully destroyed.' }
-      format.json { head :no_content }
+      if decremented.save
+        format.html { redirect_to store_path, notice: 'Line item was successfully updated.' }
+        format.js   { }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
-      @line_item = LineItem.find(params[:id])
+      @line_item ||= LineItem.find(params[:id])
+    end
+
+    def set_current_cart
+      @cart ||= Cart.find(session[:cart_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
