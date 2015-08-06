@@ -1,8 +1,7 @@
 class LineItemsController < ApplicationController
-  include PageVisits
-  before_action :set_cart, only: :create
+  include PageVisits, CurrentCart
+  before_action :set_cart, only: [:create, :decrement]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy, :decrement]
-  before_action :set_current_cart, only: [:decrement]
   # GET /line_items
   # GET /line_items.json
   def index
@@ -79,10 +78,6 @@ class LineItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
       @line_item ||= LineItem.find(params[:id])
-    end
-
-    def set_current_cart
-      @cart ||= Cart.find(session[:cart_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

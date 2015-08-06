@@ -5,6 +5,7 @@ one:
   cart_id: 1
   quantity: 2
   price: 36.00
+  order: one
 
 two:
   product_id: 3

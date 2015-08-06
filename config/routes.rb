@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :orders 
+
   resources :carts
 
   get 'store/index'  
   root to: "store#index", as: "store"
 
-  resources :products
+  resources :products do
+    member do
+      get 'who_bought'
+    end
+  end
 
   resources :line_items do
     member do

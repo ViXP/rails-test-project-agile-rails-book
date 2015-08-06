@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   include PageVisits
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]  
+  before_action :set_cart, only: [:show, :edit, :update, :destroy, :decrement]  
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
   # GET /carts
   # GET /carts.json
@@ -17,6 +17,7 @@ class CartsController < ApplicationController
   # GET /carts/new
   def new
     @cart = Cart.new
+    
   end
 
   # GET /carts/1/edit
