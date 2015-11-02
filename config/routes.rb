@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   resources :orders 
 
   resources :carts
-
-  get 'store/index'  
+  
   root to: "store#index", as: "store"
 
   resources :products do

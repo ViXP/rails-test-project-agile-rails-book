@@ -54,12 +54,6 @@ class LineItemsController < ApplicationController
     end
   end
 
-  # DELETE /line_items/1
-  # DELETE /line_items/1.json
-  def destroy
-      @line_item.destroy 
-  end
-
   def decrement    
     decremented = @line_item.decrement
     respond_to do |format|

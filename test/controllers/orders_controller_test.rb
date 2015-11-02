@@ -13,7 +13,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should get new" do
     get :new
-    assert_response :success
+    assert_redirected_to store_url
   end
 
   test "should create order" do

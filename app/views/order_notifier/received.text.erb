@@ -1,0 +1,7 @@
+Dear <%= @order.name %>!
+
+Out administration thanks you for your order which include these products:
+
+<%= render @order.line_items -%>
+
+When your order will be ready for delivery, we'll send you another e-mail message.
