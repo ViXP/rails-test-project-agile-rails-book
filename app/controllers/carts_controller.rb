@@ -80,7 +80,7 @@ class CartsController < ApplicationController
 
     def invalid_cart 
       logger.error "Atttempt to access invalid cart #{params[:id]}}"
-      AdminNotifier.error_occured.deliver(@error)
+      AdminNotifier.error_occured(@error).deliver
       redirect_to store_url, notice: 'invalid_cart'
     end
 end

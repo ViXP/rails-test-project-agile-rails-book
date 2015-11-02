@@ -29,7 +29,8 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
                       order: {name: "Cyril ViXP",
                               address: "123 The Street", 
                               email: "cyrilvixp@gmail.com",
-                              pay_type: "Check"}
+                              pay_type: "Check",
+                              ship_date: (Time.now - 86000).to_date}
     assert_response :success
     assert_template "index"
 
@@ -50,8 +51,25 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal ruby_book, line_item.product
 
   # MAILER TEST
-    mail = ActionMailer::Base.deliveries.last
-    assert_equal ["cyrilvixp@gmail.com"], mail.to
-    assert_equal 'Order confirmation from Projject store', mail.subject
+    assert_equal ["cyrilvixp@gmail.com"], last_mail.to
+    assert_equal 'Order confirmation from Projject store', last_mail.subject
+
+  # UPDATE SHIPPING DATE
+    patch_via_redirect order_path(order), order: {name: "Cyril ViXP",
+                              address: "123 The Street", 
+                              email: "cyrilvixp@gmail.com",
+                              pay_type: "Check",
+                              ship_date: Time.now.to_date}    
+    assert_response :success
+    assert_template "index"
+    assert_equal ["cyrilvixp@gmail.com"], last_mail.to
+    assert_equal "Your shipping date changed", last_mail.subject
+  end
+
+  test "should mail admin" do
+    get "/carts/cart_not_exist"
+    assert_redirected_to store_url
+    assert_equal ["cyrilvixp@gmail.com"], last_mail.to
+    assert_equal "Error occured in your application", last_mail.subject
   end
 end
