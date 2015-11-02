@@ -21,6 +21,6 @@ class OrderNotifier < ActionMailer::Base
     @order = order
     @greeting = 'Hi!'
     mail to: order.email, subject: "We sent your order!"
-  end
+  end 
 
 end
