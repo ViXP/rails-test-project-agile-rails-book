@@ -15,4 +15,11 @@ class OrderNotifierTest < ActionMailer::TestCase
     assert_match /2 x CoffeeScript/, mail.body.encoded
   end
 
+  test "updated" do
+    mail = OrderNotifier.updated(orders(:one))
+    assert_equal "Your shipping date changed", mail.subject
+    assert_equal ["cyrilvixp@gmail.com"], mail.to
+    assert_match /2 x CoffeeScript/, mail.body.encoded
+  end
+  
 end

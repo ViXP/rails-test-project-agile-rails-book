@@ -23,4 +23,11 @@ class OrderNotifier < ActionMailer::Base
     mail to: order.email, subject: "We sent your order!"
   end 
 
+  def updated order
+    @order = order
+    @greeting = "Hi!"
+    @ship_date = order.ship_date
+    mail to: order.email, subject: "Your shipping date changed"
+  end
+
 end

@@ -1,0 +1,12 @@
+<h1>Your shipping gate changed</h1>
+
+<p>
+	We remind you, that your shipping date was changed to <%= @ship_date %>
+</p>
+<table>
+	<tr>
+		<th colspan="2">Quantity</th>
+		<th>Description</th>
+	</tr>
+		<%= render @order.line_items %>
+</table>
