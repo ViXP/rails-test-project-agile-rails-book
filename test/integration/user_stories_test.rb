@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserStoriesTest < ActionDispatch::IntegrationTest
-	fixtures :products
+
   # test "the truth" do
   #   assert true
   # end
@@ -10,6 +10,10 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   	LineItem.delete_all
   	Order.delete_all
   	ruby_book = products(:ruby)
+
+  # LOGIN
+    post "/login", name: users(:one).name, password: 'groovy'
+    assert_redirected_to admin_url
 
   # ADD PRODUCTS TO CART
   	get "/"
@@ -67,6 +71,11 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   end
 
   test "should mail admin" do
+  # LOGIN
+    post "/login", name: users(:one).name, password: 'groovy'
+    assert_redirected_to admin_url
+
+  # ERROR MAILER 
     get "/carts/cart_not_exist"
     assert_redirected_to store_url
     assert_equal ["cyrilvixp@gmail.com"], last_mail.to
