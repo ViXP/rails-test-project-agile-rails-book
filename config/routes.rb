@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'admin/index', as: :admin
+
   resources :users
 
   resources :orders
@@ -18,6 +20,12 @@ Rails.application.routes.draw do
     member do
       post 'decrement'
     end
+  end
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
