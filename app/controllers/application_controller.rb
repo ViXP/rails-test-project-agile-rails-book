@@ -9,9 +9,20 @@ class ApplicationController < ActionController::Base
  	protected 
 
  	def authorize
- 		if !(User.find_by(id: session[:user_id])) && User.count > 0
- 			redirect_to login_url, notice: "Login please"
-	  elsif User.count == 0 
+ 		if !(User.find_by(id: session[:user_id])) && !(User.count.zero?)
+ 			if request.format == Mime::HTML
+ 				redirect_to login_url, notice: "Login please"
+ 			else
+ 				if user = authenticate_with_http_basic do |logn, pass|
+          finded_user = User.find_by_name(logn)
+          finded_user.authenticate(pass) if finded_user
+        end
+        session[:user_id] = user.id
+        elsif
+          render :status => 403, :text => "login failed" and return
+        end
+ 			end
+	  elsif User.count.zero?
 			redirect_to new_user_url, notice: "Register your user"
 		end
  	end
