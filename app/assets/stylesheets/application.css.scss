@@ -13,33 +13,29 @@
  *= require_tree .
  *= require_self
  */
-$font: Arial;
-$black: #000000;
 
-@mixin radius($radius) {
-	-webkit-border-bottom-right-radius: 15px;
-	-webkit-border-bottom-left-radius: 15px;
-	-moz-border-radius-bottomright: 15px;
-	-moz-border-radius-bottomleft: 15px;
-	border-bottom-right-radius: 15px;
-	border-bottom-left-radius: 15px;
-}
+@import "colors";
+@import "variables";
+@import "mixins";
+
 
 html,body {
 	height: 100%;
 }
 
 .depot_form {
+
 	fieldset {
-		background: #efe;
+		background: $white;
 		legend {
-			color: #dfd;
-			background: #141;
+			color: $yellow;
+			background: $darkbrown;
 			font-family: sans-serif;
 			padding: 0.2em 1em;
 		}
 	}
 	form {
+
 		label {
 			width: 5em;
 			float: left;
@@ -48,12 +44,15 @@ html,body {
 			margin-right: 0.1em;
 			display: block;
 		}
+
 		select, textarea, input {
 			margin-left: 0.5em;
 		}
+
 		.submit {
 			margin-left: 4em;
 		}
+
 		br {
 			display: none;
 		}
@@ -61,17 +60,19 @@ html,body {
 }
 
 #banner {
-	background: #9c9;
+	background: $lightgreen;
 	padding: 10px;
 	border-bottom: 2px solid;
 	font: small-caps 40px/40px $font;
-	color: #282;
+	color: $green;
 	text-align: center;
+
 		img {
 			float: left;
 			width: 60px;
 			margin-top: -10px;
 		}
+
 		#times_visited {
 			position: absolute;
 			right: 20px;
@@ -81,48 +82,70 @@ html,body {
 		}
 	}
 	#notice {
-		color: #000 !important;
+		color: $black;
 		border: 2px solid red;
 		padding: 1em;
 		margin-bottom: 2em;
-		background-color: #f0f0f0;
+		background-color: lighten($white, 20%);
 		font: bold smaller $font;
 		}
+		
 		#columns {
 			height: 100%;
-			background: #141;	
+			background: $darkbrown;	
+
 			#main {
 				height: calc(100% - 80px);
 				margin-left: 17em;
 				padding: 1em;
-				background: white;
-				@include radius(15px);
+				background: $white;
+				@include bottomradius(15px);
 			}	
+
 			#side {
 				float: left;
 				padding: 1em 2em;
 				width: 13em;
-				background: #141;	
+				background: $darkbrown;	
+
+				#admin_panel {
+					@include radius(5px);
+					background-color: lighten($green, 20%);
+
+					& a {
+						color: $darkbrown;
+						font-weight: bold;
+						&:hover {
+							background-color: $white;
+						}
+					}
+					padding: 10px;
+				}
+
 				form, div {
   				 display: inline;
 				}
+
 				input {
 					font-size: small;
 				}
+
 				#cart {
 					font-size: smaller;
 					color: white;
+
 					table {
-						border-top: 1px dotted #595;
-						border-bottom: 1px dotted #595;
+						border-top: 1px dotted $lightgreen;
+						border-bottom: 1px dotted $lightgreen;
 						margin-bottom: 10px;
 					}
 				}
 				ul {
-					padding: 0;				
+					padding: 0;		
+
 				li, & a {
 					list-style: none;						
-					color: #bfb;
+					color: $yellow;
 					font-size: small;	
 				}
 			}

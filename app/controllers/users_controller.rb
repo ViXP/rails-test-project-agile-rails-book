@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authorize, only: [:new, :create]
   # GET /users
   # GET /users.json
   def index
@@ -41,11 +41,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.authenticate(params[:user][:old_password]) && @user.update(user_params)
         format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        @user.errors.add(params[:user][:old_password], "for user is incorrect") unless @user.authenticate(params[:user][:old_password])
+        format.html { render :edit , notice: 'Something`s incorrect'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -54,9 +55,14 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    begin
+      @user.destroy
+      flash[:notice] = "User #{@user.name} deleted"
+    rescue StandardError => e
+      flash[:notice] = e.message
+    end
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end

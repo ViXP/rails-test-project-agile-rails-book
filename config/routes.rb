@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
+  root to: "store#index", as: "store"
+
   get 'admin/index', as: :admin
 
   resources :users
 
   resources :orders
 
-  resources :carts
-  
-  root to: "store#index", as: "store"
+  resources :carts  
 
   resources :products do
     member do
