@@ -81,4 +81,24 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal ["cyrilvixp@gmail.com"], last_mail.to
     assert_equal "Error occured in your application", last_mail.subject
   end
+
+  test "should require login" do
+    # LOGIN
+    post "/login", name: users(:one).name, password: 'groovy'
+    assert_redirected_to admin_url
+    get "/orders"
+    assert_response :success
+    assert_template "index"    
+    delete_via_redirect "logout", session: {user_id: users(:one).id}
+    assert_response :success
+    get "/orders"
+    assert_redirected_to "/login"
+  end
+
+  test "should require registration if no users" do
+    User.delete_all
+    get "/products"
+    assert_redirected_to new_user_url
+  end
+
 end

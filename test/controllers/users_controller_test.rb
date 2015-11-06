@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
 
-  test "should show user" do
+  test "should show user" do 
     get :show, id: @user
     assert_response :success
   end
@@ -35,8 +35,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { name: 'ash', password: 'secret', password_confirmation: 'secret' }
-    assert_redirected_to users_path
+    patch :update, id: @user, user: { name: 'Ash', password: 'secret', password_confirmation: 'secret', old_password: 'groovy' }
+    assert_redirected_to users_url
   end
 
   test "should destroy user" do
