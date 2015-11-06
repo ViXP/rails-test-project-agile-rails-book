@@ -2,29 +2,30 @@
 <html>
 <head>
   <title>My shop projject</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>">
 	<div id="banner">
 		<%= image_tag('cart.png') %>		
-		<%= @page_title || "My shop projject" %>		
+		<%= @page_title || t('.title') %>		
 		<div id="times_visited">
 			<%= controller.page_visit_show %>
 		</div> 
 	</div>
 	<div id="columns">
 		<div id="side">
-				<% if @cart %>
-					<%= hidden_div_if(@cart.line_items.empty?, {:id => 'cart'}) do %>
-						<%= render @cart %>
-					<% end %>
+			<% if @cart %>
+				<%= hidden_div_if(@cart.line_items.empty?, {:id => 'cart'}) do %>
+					<%= render @cart %>
 				<% end %>
+			<% end %>
+			
 			<ul>
-				<li><%= link_to 'Home', store_path %></li>
+				<li><%= link_to t('.home'), store_path %></li>
 				<br />
-				<li />Current time: <%= Time.now.strftime("%H:%M") %>
+				<li /><%= t('.current_time') +" "+ Time.now.strftime("%H:%M") %>
 				<br />
 			</ul>
 
@@ -36,7 +37,6 @@
 				</ul>
 				<%= button_to 'Logout', logout_path, method: :delete %>
 			<% end %>
-
 		</div>
 		<div id="main">
 			<%= yield %>

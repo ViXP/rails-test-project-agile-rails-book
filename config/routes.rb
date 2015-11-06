@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
 
-  root to: "store#index", as: "store"
-
-  get 'admin/index', as: :admin
+  scope '(:locale)' do
+    root to: "store#index", as: "store"
+    resources :line_items
+    resources :orders
+    resources :carts
+  end
 
   resources :users
 
-  resources :orders
-
-  resources :carts  
+  get 'admin/index', as: :admin
 
   resources :products do
     member do

@@ -1,0 +1,17 @@
+es:
+  layouts:
+    application:
+      title: "Mi tienda projject" 
+      home: "Casa"
+      current_time: "Hora actual:"
+  store:
+    index:
+      catalog: "Tienda catálogo"
+      add_cart_html: "A&ntilde;adir al Carrito"
+  carts:
+    cart:
+      your_cart_html: "Su carro:"
+      total_html: "Total"
+      empty_cart_html: "Carrito vacio"
+      order_btn_html: "Ordenar"
+      you_sure_html: "¿Estás seguro?"
