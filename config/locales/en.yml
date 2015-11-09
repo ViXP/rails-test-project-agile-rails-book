@@ -1,4 +1,12 @@
 en:
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n"
   layouts:
     application:
       title: "My shop projject" 
@@ -15,3 +23,15 @@ en:
       empty_cart_html: "Empty cart"
       order_btn_html: "Order it"
       you_sure_html: "Are you sure?"
+  orders:
+    new:
+      legend: "Please enter your details"
+    create:
+      thanks: 'Thank you for your order.'
+    form:
+      select_pay_meth: "Select a payment method"
+      name_html: "Name"
+      address_html: "Address"
+      email_html: "E-mail"
+      pay_type: "Pay with"
+      submit: "Place older"

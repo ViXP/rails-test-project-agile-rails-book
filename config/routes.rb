@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
 
-  scope '(:locale)' do
-    root to: "store#index", as: "store"
-    resources :line_items
-    resources :orders
-    resources :carts
-  end
-
   resources :users
-
+  
   get 'admin/index', as: :admin
 
   resources :products do
@@ -27,6 +20,13 @@ Rails.application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
+  end
+
+  scope '(:locale)' do
+    root to: "store#index", as: "store", via: :all
+    resources :line_items
+    resources :orders
+    resources :carts   
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

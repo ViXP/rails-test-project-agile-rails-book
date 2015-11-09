@@ -80,6 +80,9 @@ html,body {
 			font: bold 15px $font;
 			color: $black;
 		}
+		.locale {
+			margin: 0.25em 0.1em;
+		}
 	}
 	#notice {
 		color: $black;

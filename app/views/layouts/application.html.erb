@@ -12,6 +12,12 @@
 		<%= @page_title || t('.title') %>		
 		<div id="times_visited">
 			<%= controller.page_visit_show %>
+
+			<%= form_tag store_path, class: "locale" do %>
+				<%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()' %>
+				<%= submit_tag "Submit" %>
+				<%= javascript_tag "$('.locale input').hide()" %>
+			<% end %>
 		</div> 
 	</div>
 	<div id="columns">
