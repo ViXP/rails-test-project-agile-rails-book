@@ -1,0 +1,8 @@
+%h1 Your order sent
+%p
+  We remind you, that your order is already shipped!
+%table
+  %tr
+    %th{:colspan => "2"} Quantity
+    %th Description
+  = render @order.line_items

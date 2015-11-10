@@ -1,0 +1,9 @@
+- if line_item == @current_item
+  %tr#current_item
+- else
+  %tr
+    %td
+      = line_item.quantity
+      %td= line_item.product.title
+      %td.item_price= number_to_currency(line_item.total_price, precision: 2,  separator: ".", delimiter:  " ")
+      %td= button_to "X", decrement_line_item_path(line_item), method: :post, remote: true

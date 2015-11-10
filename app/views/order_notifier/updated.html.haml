@@ -1,0 +1,8 @@
+%h1 Your shipping gate changed
+%p
+  We remind you, that your shipping date was changed to #{@ship_date}
+%table
+  %tr
+    %th{:colspan => "2"} Quantity
+    %th Description
+  = render @order.line_items

@@ -1,0 +1,20 @@
+- @product.orders.each do |order|
+  %h2
+    Order #{order.id}
+  %p
+    Shipped to #{order.address}
+  %table
+    %tr
+      %th Product
+      %th Quantity
+      %th Total Price
+    - order.line_items.each do |item|
+      %tr
+        %td= item.product.title
+        %td= item.quantity
+        %td= number_to_currency item.total_price
+    %tr
+      %th{:colspan => "2"} total
+      %th= number_to_currency order.line_items.map(&:total_price).sum
+  %p
+    Paid by #{order.pay_type}

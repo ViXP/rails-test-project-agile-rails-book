@@ -1,0 +1,30 @@
+= form_for(@order) do |f|
+  - if @order.errors.any?
+    #error_explanation
+      %h2= raw t('errors.template.header', count: @order.errors.count, model: t('activerecord.models.order'))
+      %p= t('errors.template.body')
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= raw msg
+  .field
+    = f.label :name, t('.name_html')
+    %br/
+    = f.text_field :name, size: 40
+  .field
+    = f.label :address, t('.address_html')
+    %br/
+    = f.text_area :address, rows: 3, cols: 40
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, size: 40
+  .field
+    = f.label :pay_type, t('.pay_type')
+    %br/
+    = f.select :pay_type, PaymentType.names, :prompt => t('.select_pay_meth')
+  .field
+    = f.label :ship_date
+    %br/
+    = f.date_field :ship_date
+  .actions
+    = f.submit t('.submit')
