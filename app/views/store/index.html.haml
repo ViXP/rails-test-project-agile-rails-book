@@ -10,5 +10,5 @@
           %h3= link_to product.title, product
           = sanitize product.description
           .price_line
-            %span.price= number_to_currency(product.price, precision: 2,  separator: ".", delimiter:  " ")
+            %span.price= number_to_currency(local_price(product.price), precision: 2,  separator: ".", delimiter:  " ")
             = button_to t('.add_cart_html'), line_items_path(product_id: product.id), remote: true

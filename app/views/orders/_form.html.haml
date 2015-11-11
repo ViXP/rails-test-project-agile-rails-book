@@ -25,6 +25,7 @@
   .field
     = f.label :ship_date
     %br/
-    = f.date_field :ship_date
+    - unless params[:action] == 'new'
+      = f.date_field :ship_date
   .actions
     = f.submit t('.submit')

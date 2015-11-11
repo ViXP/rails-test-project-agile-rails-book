@@ -6,4 +6,8 @@ module ApplicationHelper
 		content_tag("div", attrib, &block)
 	end
 
+	def local_price(price)
+		params[:locale] == "en" ? price : price * 0.932821
+	end
+
 end
