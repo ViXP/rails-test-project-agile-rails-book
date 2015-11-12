@@ -21,7 +21,7 @@
   .field
     = f.label :pay_type, t('.pay_type')
     %br/
-    = f.select :pay_type, PaymentType.names, :prompt => t('.select_pay_meth')
+    = f.select :pay_type, pay_types_translate.map{|v|[v[:text], v[:value]]}, :prompt => t('.select_pay_meth')
   .field
     = f.label :ship_date
     %br/

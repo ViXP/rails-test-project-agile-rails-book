@@ -1,4 +1,7 @@
 en:
+  check: "Check"
+  creditcard: "Credit card"
+  purchaseorder: "Purchase order"
   number:
     currency:
       format:
@@ -34,4 +37,4 @@ en:
       address_html: "Address"
       email_html: "E-mail"
       pay_type: "Pay with"
-      submit: "Place older"
+      submit: "Place older"      

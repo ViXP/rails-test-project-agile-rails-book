@@ -1,4 +1,7 @@
 es:
+  check: "Check!"
+  creditcard: "Tarjeta de crédito"
+  purchaseorder: "Orden de compra"
   number:
     currency:
       format:
