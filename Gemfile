@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+group :production do
+	gem 'mysql2', '~> 0.3.18'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
