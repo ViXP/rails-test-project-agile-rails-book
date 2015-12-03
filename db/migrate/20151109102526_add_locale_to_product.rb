@@ -1,6 +1,6 @@
 class AddLocaleToProduct < ActiveRecord::Migration
   def up
-  	add_column :products, :locale, :symb, default: :en
+  	add_column :products, :locale, :string, default: "en"
   end
 
   def down
