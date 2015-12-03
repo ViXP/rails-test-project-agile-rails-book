@@ -9,6 +9,8 @@ set :repo_url, 'ssh://vixp@projject.com/~/git/projject.git'
 
 # Default deploy_to directory is /var/www/my_app_name
  set :deploy_to, '/var/www/projject'
+ set :deploy_via, :remote_cache
+ set :copy_exclude, ['.git']
 
 # Default value for :scm is :git
 # set :scm, :git
