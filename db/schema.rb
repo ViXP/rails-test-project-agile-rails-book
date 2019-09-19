@@ -13,12 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20151109102526) do
 
-  create_table "carts", force: true do |t|
+  create_table "carts", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "line_items", force: true do |t|
+  create_table "line_items", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
     t.datetime "created_at"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20151109102526) do
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
   add_index "line_items", ["product_id"], name: "index_line_items_on_product_id"
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.string   "name"
     t.text     "address"
     t.string   "email"
@@ -42,16 +42,23 @@ ActiveRecord::Schema.define(version: 20151109102526) do
     t.date     "ship_date"
   end
 
-  create_table "payment_types", force: true do |t|
+  create_table "payment_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-# Could not dump table "products" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "products", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_url"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "locale",                              default: "en"
+  end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
     t.datetime "created_at"
